@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+		<title>碳排放量价格可视化首页</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/app.css" />
+		<link rel="stylesheet" href="css/idea65.css" />
+		<link rel="stylesheet" href="css/idea62.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		
+
+<script type="text/javascript">
+        document.documentElement.style.fontSize = document.documentElement.clientWidth /768*100 + 'px';
+</script>
+
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="js/echarts-3.8.5.min.js"></script>
+		<script type="text/javascript" src="js/echarts-map-world.js"></script>
+		<script type="text/javascript" src="js/echarts-map-china.js"></script>
+		<script type="text/javascript" src="js/echarts.js"></script>
+		<script type="text/javascript" src="js/china.js"></script>
+		<script type="text/javascript" src="js/map.js"></script>
+		<script type="text/javascript" src="js/js.js"></script>
+		<script type="text/javascript" src="js/65js.js"></script>
+		<script type="text/javascript" src="js/16js.js"></script>
+		<script type="text/javascript" src="js/Bubble.js"></script>
+		<script type="text/javascript" src="js/echarts-gl.min.js"></script>
+	    <script language="JavaScript" src="js/echarts-tool.js"></script>
+    
+        <!-- $('.counter').countUp(); -->
+   		</script>
+	</head>
+	<body class="bg01">
+		<header class="header">
+			<div>
+				<h3>碳林脉动智能平台</h3>
+			</div>
+			
+			<div class="menu pulll_left">
+				<ul>
+					<li class="float_box_discover1"><a href="#">首页</a></li>
+					<li class="float_box_discover2 has-submenu"><a href="#">碳交易试点地区</a>
+						<ul class="submenu">
+							<li><a href="../交易试点/index_beijing.html">北京</a></li>
+							<li><a href="../交易试点/index_guangzhou.html">广东</a></li>
+							<li><a href="../交易试点/index_fujian.html">福建</a></li>
+							<li><a href="../交易试点/index_tianjin.html">天津</a></li>
+							<li><a href="../交易试点/index_shanghai.html">上海</a></li>
+							<li><a href="../交易试点/index_chongqing.html">重庆</a></li>
+							<li><a href="../交易试点/index_hubei.html">湖北</a></li>
+							<li><a href="../交易试点/index_shenzhen.html">深圳</a></li>
+						</ul>
+					</li>
+					<li class="float_box_discover3"><a href="../page3/政策讯息.html">政策讯息</a></li>
+				</ul>
+			</div>
+			<div  id="showTime">2023/1/1 00:00:00</div>
+		</header>
+
+		
+	<script>
+		var t = null;
+		t = setTimeout(time,1000);//開始运行
+		function time()
+		{
+		   clearTimeout(t);//清除定时器
+		   dt = new Date();
+			var y=dt.getFullYear();
+			var mt=dt.getMonth()+1;
+			var day=dt.getDate();
+		   var h=dt.getHours();//获取时
+		   var m=dt.getMinutes();//获取分
+		   var s=dt.getSeconds();//获取秒
+		   document.getElementById("showTime").innerHTML = y+"/"+mt+"/"+day+" "+h+":"+m+":"+s+"";
+		   t = setTimeout(time,1000); //设定定时器，循环运行
+		}
+	</script>
+<!--</div>-->
+
+		<div class="wrapper">
+			<div class="container-fluid">
+				<div class="row fill-h">
+					<div class="col-lg-3 fill-h">
+						<div class="xpanel-wrapper xpanel-wrapper-2">
+							<div class="xpanel xpanel1">
+									<div class="fill-h">
+									<div class="tit">平台介绍</div>
+									<div class="scrollCon" id="scrollCon">
+										<ul id="scrollCon1">
+											<li></li>
+											<li>&emsp;&emsp;全球变暖持续进行，低碳减排刻不容缓。</li>
+											<li>“碳林脉动：基于ARCH模型的碳足迹大数据</li>
+											<li>动态监管平台”是一个整合海量多源多维数据</li>
+											<li>形成的，集碳排放与碳市场数据监测、基于</li>
+											<li>ARCH模型的碳价波动分析与碳政策讯息呈现</li>
+											<li>三大功能于一体的智能平台。平台涵盖全国各</li>
+											<li>省碳排放、能源结构占比及碳市场新增企业等</li>
+											<li>数据，并可视化呈现八大试点地区的交易量及</li>
+											<li>交易额等内容；依托ARCH模型精准捕获及预</li>
+											<li>测碳市场波动；汇集碳交易政策最新讯息。该</li>
+											<li>平台通过数据驱动政府定价、企业履约、研究</li>
+											<li>机构及个人投资等环节科学决策，助力各方主</li>
+											<li>体高效参与碳交易市场，为“双碳”目标的精</li>准精准实现提供科学路径与系统性支撑。</li>
+											
+										</ul>
+										<ul id="scrollCon2">
+											
+										</ul>
+									</div>
+
+									<script type="text/javascript">
+										var conScroll = function(){
+											var scrollCon = document.getElementById("scrollCon");
+											var li = scrollCon.getElementsByTagName("li");
+											var scrollCon1 = document.getElementById("scrollCon1");
+											var scrollCon2 = document.getElementById("scrollCon2");
+											if(li.length > 3){
+												scrollCon2.innerHTML = scrollCon1.innerHTML;
+												scrollCon.scrollTop = 0;
+												function rollStart(){
+													if(scrollCon.scrollTop >= scrollCon1.scrollHeight){
+														scrollCon.scrollTop = 0;
+													}else{
+														scrollCon.scrollTop++;
+													}
+												}
+												var timer = setInterval(rollStart, 50);
+												scrollCon.onmouseover = function(){
+													clearInterval(timer);
+												}
+												scrollCon.onmouseout = function(){
+													timer = setInterval(rollStart, 50);
+												}
+											}
+										};
+										conScroll();
+									</script>
+								</div>
+							</div>
+						</div>
+						<div class="xpanel-wrapper xpanel-wrapper-2">
+							<div class="xpanel xpanel2" >
+								<div class="fill-h">
+									<div class="tit">八大行业（2017-2022）</div>
+
+										<div style="width:100%; height:80%" id="chartmain_zhe"></div>
+										<script type="text/javascript">
+										//window.onload = function (){
+											//指定图表的配置项和数据
+											var lineChart1 = echarts.init(document.getElementById('chartmain_zhe'));
+											lineChart1.setOption( {
+												color : [ '#09d0fb', '#f88cfb', '#95f8fe', '#0FFF95', '#3BA272',  '#FC8452',  '#9A60B4'   ],
+												tooltip : {
+													trigger: 'item',
+													formatter: "{a}<br/>{b}<br/>{c}元"
+												},
+												legend: {
+													data: ['电力行业','钢铁行业','有色行业','化工行业','建材行业','造纸行业','航空行业'], 
+													y: 'top',
+													x:'center',
+													textStyle:{
+														color:'#fff',
+														fontSize:12
+													}
+											},
+											grid:{
+												x:70,
+												y:90,
+												x2:20,
+												y2:20,
+											},
+											calculable : true,
+											xAxis: {
+												type: 'category',
+												boundaryGap: false,
+												axisLabel: {
+																/*inside: true,*/
+																interval:0,
+																textStyle: {
+																	color: '#fff',
+																	fontSize: 14
+																}
+															},
+															axisTick: {
+																show: false,
+															},
+															axisLine: {
+																show: true,
+																symbol:['none', 'arrow'],
+																symbolOffset: 14,
+																lineStyle:{
+																	color: '#fff',
+																}
+															},
+												data: ['2017', '2018', '2019', '2020', '2021','2022']
+											},
+											yAxis: {
+												type: 'value',
+												axisLine: {
+													show: true,
+													symbol: ['none', 'arrow'],
+													symbolOffset: 14,
+													lineStyle:{
+														color: '#fff',
+													}
+												},
+												axisTick: {
+													show: false
+												},
+												axisLabel: {
+													textStyle: {
+														color: '#fff',
+														fontSize: 14
+													}
+												}
+											},
+											series: [
+											{
+												name: '电力行业',
+												type: 'line',
+												stack: '总量',
+												smooth:true,
+												data: [358429.031, 376658.59, 395042.288, 415140.468, 470571.58,492810.811],
+												itemStyle: {normal: {areaStyle: {type: 'default'}}},
+											},
+											{
+												name: '钢铁行业',
+												type: 'line',
+												stack: '总量', smooth:true,
+												data: [166879.231, 164726.642, 168813.125, 172479.792, 171299.49,173040.295],
+												itemStyle: {normal: {areaStyle: {type: 'default'}}},
+											},
+											{
+												name: '有色行业',
+												type: 'line',
+												stack: '总量', smooth:true,
+												data: [34700.444, 44205.894, 42048.742, 35269.656, 34962.634,32399.051],
+												itemStyle: {normal: {areaStyle: {type: 'default'}}},
+											},
+											{
+												name: '石化行业',
+												type: 'line',
+												stack: '总量', smooth:true,
+												data: [5713.014, 5711.743, 5659.221, 5476.831, 5719.307, 6610.144],
+												itemStyle: {normal: {areaStyle: {type: 'default'}}},
+											},
+											{
+												name: '化工行业',
+												type: 'line',
+												stack: '总量', smooth:true,
+												data: [76431.762, 72565.046, 74465.487, 80783.839, 82143.736, 84997.766],
+												itemStyle: {normal: {areaStyle: {type: 'default'}}},
+											},
+											{
+												name: '建材行业',
+												type: 'line',
+												stack: '总量', smooth:true,
+												data: [57382.847, 53423.963, 52042.992, 57036.899, 56858.572, 58558.553],
+												itemStyle: {normal: {areaStyle: {type: 'default'}}},
+											},
+											{
+												name: '造纸行业',
+												type: 'line',
+												stack: '总量', smooth:true,
+												data: [9254.43, 8762.092, 8068.657, 7363.236, 7341.693, 6812.903],
+												itemStyle: {normal: {areaStyle: {type: 'default'}}},
+											},
+											{
+												name: '航空行业',
+												type: 'line',
+												stack: '总量', smooth:true,
+												data: [885.718, 2266.164, 607.137, 604.314, 718.169, 880.955],
+												itemStyle: {normal: {areaStyle: {type: 'default'}}},
+											}]
+
+											})
+										</script>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-6 fill-h">
+						<div class="xpanel-wrapper xpanel-wrapper-1">
+							<div class="xpanel xpanel3">
+								<div class="fill-h">
+									<div class="EchartsBox" id="map"></div>
+									<h1 class="chart-title">全国碳排放量分布图（单位：万吨）</h1>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-3 fill-h">
+						<div class="xpanel-wrapper xpanel-wrapper-2">
+							<div class="xpanel" >
+								<div class="fill-h">
+									<div class="tit">22年地区能源消耗占比</div>
+									<div style="width:100%; height:30vh" id="chartmain_bing"></div>
+									<script type="text/javascript">
+											option = {
+												title: {
+													text: '数据情况统计',
+													subtext: '',
+													top: 10,
+													left: 'right',
+													textStyle: {
+														color: '#fff',
+														fontSize: 15
+													}
+												},
+												tooltip: {
+													trigger: 'item',
+													formatter: '{a} <br/>{b} : {c} ({d}%)'
+												},
+												legend: {
+													// orient: 'vertical',
+													// top: 'middle',
+													type: 'scroll',
+													orient: 'vertical',
+													right: 10,
+													top: 60,
+													bottom: 20,
+													left: 'right',
+													data: ['北京', '天津', '河北', '山西', '内蒙古','辽宁', '吉林', '黑龙江', '上海', '江苏', '浙江', '安徽', '福建', '江西', '山东', '河南', '湖北', '湖南', '广东', '广西', '海南', '重庆', '四川', '贵州', '云南', '陕西', '甘肃', '青海', '宁夏', '新疆' ],
+													textStyle: {
+														color: '#fff',
+														fontSize: 12
+													}
+												},
+												grid:{
+													x:'-10%',
+													y:40,
+													x2:20,
+													y2:20,
+												},
+												color : [ '#09d0fb', '#f88cfb', '#95f8fe', '#0FFF95',  '#ecfeb7' ],
+												series: [
+													{
+														type: 'pie',
+														name:'万吨标准煤',
+														radius: '65%',
+														center: ['40%', '60%'],
+														selectedMode: 'single',
+														data: [
+															{value: 6896, name: '北京'},
+															{value: 8121, name: '天津'},
+															{value: 32538, name: '河北'},
+															{value: 19582, name: '山西'},
+															{value: 27680, name: '内蒙古'},
+															{value: 25911, name: '辽宁'},
+															{value: 7392, name: '吉林'},
+															{value: 12035, name: '黑龙江'},
+															{value: 10951, name: '上海'},
+															{value: 35823, name: '江苏'},
+															{value: 29112, name: '浙江'},
+															{value: 15882, name: '安徽'},
+															{value: 15784, name: '福建'},
+															{value: 10785, name: '江西'},
+															{value: 48166, name: '山东'},
+															{value: 24371, name: '河南'},
+															{value: 18627, name: '湖北'},
+															{value: 17027, name: '湖南'},
+															{value: 36519, name: '广东'},
+															{value: 13207, name: '广西'},
+															{value: 2424, name: '海南'},
+															{value: 8022, name: '重庆'},
+															{value: 22545, name: '四川'},
+															{value: 10980, name: '贵州'},
+															{value: 14158, name: '云南'},
+															{value: 16099, name: '陕西'},
+															{value: 8667, name: '甘肃'},
+															{value: 4798, name: '青海'},
+															{value: 8679, name: '宁夏'},
+															{value: 20723, name: '新疆'}
+
+
+														],
+														emphasis: {
+															itemStyle: {
+																shadowBlur: 10,
+																shadowOffsetX: 0,
+																shadowColor: 'rgba(0, 0, 0, 0.5)'
+															}
+														}
+													}
+												]
+											};
+											//获取dom容器
+														var myChart = echarts.init(document.getElementById('chartmain_bing'));
+														// 使用刚指定的配置项和数据显示图表。
+														myChart.setOption(option);
+											</script>
+										</div>
+									 </div>
+						</div>
+						<div class="xpanel-wrapper xpanel-wrapper-2">
+							<div class="xpanel">
+								<div class="fill-h">
+									<div class="tit">2022年纳入市场企业</div>
+									<div style="width:100%; height:100%">
+										<div style="height:calc(100% - 30px) " id="zhuzhuang"></div>
+										<div style="height: calc(100% - 30px)" id="zhuzhuang"></div>
+									<script type="text/javascript">
+										$(function () {
+											echarts_1();
+											function echarts_1() {
+												var myChart = echarts.init(document.getElementById('zhuzhuang'));
+												option = {
+													// 深色背景
+													
+													// 图例配置
+													legend: {
+														data: ['实际值', '增长率'],
+														right: '30%',
+														top: 15,
+														textStyle: {
+															color: '#fff',
+															fontSize: 12
+														}
+													},
+													tooltip: {
+														trigger: 'axis',
+														axisPointer: {
+															type: 'shadow'
+														},
+														formatter: function (params) {
+															let html = `<div style="padding:8px;border-radius:4px">
+																<div style="color:#00f2fe;margin-bottom:5px">${params[0].axisValue}</div>`;
+															params.forEach(item => {
+																const unit = item.seriesName === '增长率' ? '%' : ''
+																html += `
+																<div style="display:flex;align-items:center;margin:3px 0">
+																	<span style="display:inline-block;
+																		width:10px;
+																		height:10px;
+																		background:${item.color};
+																		margin-right:5px"></span>
+																	${item.seriesName}：<b style="color:#ffd700">${item.value}${unit}</b>
+																</div>`
+															})
+															return html + '</div>';
+														},
+														backgroundColor: 'rgba(0,0,0,0.8)',
+														borderColor: '#00f2fe'
+													},
+													grid: {
+														left: '3%',
+														right: '5%',
+														top: '20%',
+														bottom: '12%',
+														containLabel: true
+													},
+													xAxis: [{
+														type: 'category',
+														data: ['2022/6','2022/8','2022/9','2022/10','2022/11','2022/12','2023/1'],
+														axisLabel: {
+															color: '#89c3eb',
+															rotate: 45,
+															fontSize: 12
+														},
+														axisLine: {
+															lineStyle: {
+																color: '#2d5b9a'
+															}
+														},
+														axisTick: { show: false }
+													}],
+													yAxis: [
+														{ // 左侧Y轴（柱状图）
+															type: 'value',
+															name: '单位：万吨',
+															nameTextStyle: {
+																color: '#89c3eb',
+																fontSize: 12
+															},
+															splitLine: {
+																lineStyle: {
+																	color: '#1d3557',
+																	type: 'dashed'
+																}
+															},
+															axisLabel: {
+																color: '#89c3eb',
+																fontSize: 12
+															},
+															axisLine: {
+																show: true,
+																lineStyle: {
+																	color: '#2d5b9a'
+																}
+															}
+														},
+														{ // 右侧Y轴（曲线图）
+															type: 'value',
+															name: '增长率 (%)',
+															nameTextStyle: {
+																color: '#89c3eb',
+																fontSize: 12
+															},
+															splitLine: { show: false },
+															axisLabel: {
+																color: '#89c3eb',
+																fontSize: 12,
+																formatter: '{value}%'
+															},
+															axisLine: {
+																show: true,
+																lineStyle: {
+																	color: '#2d5b9a'
+																}
+															}
+														}
+													],
+													series: [
+														{ // 柱状图系列
+															name: '实际值',
+															type: 'bar',
+															data: [38,68, 741, 460, 65, 536,202],
+															barWidth: '30%',
+															itemStyle: {
+																color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+																	{ offset: 0, color: '#00b4ff' },
+																	{ offset: 1, color: '#0063b8' }
+																]),
+																borderRadius: [4, 4, 0, 0]
+															},
+															emphasis: {
+																itemStyle: {
+																	shadowColor: 'rgba(0, 180, 255, 0.8)',
+																	shadowBlur: 10
+																}
+															}
+														},
+														{ // 曲线图系列
+															name: '增长率',
+                        type: 'line',
+                        yAxisIndex: 1,
+                        data: [0, 78.9, 990.2, -38.0, -85.8, 724.6, -62.3],
+                        smooth: true,
+                        symbol: 'path://M12 0l3.09 6.26L22 7.27l-5 4.87 1.18 6.88L12 16l-6.18 3.02L7 12.14 2 7.27l6.91-1.01L12 0z', // 星星SVG路径
+                        symbolSize: 4, // 增大尺寸
+                        symbolRotate: 0, // 旋转角度
+                        lineStyle: {
+                            width: 3,
+                            color: '#ffd700'
+                        },
+                        itemStyle: {
+                            color: '#fff',     // 星星填充色
+                            borderColor: '#ff6b6b', // 边框颜色
+                            borderWidth: 1.5,      // 边框宽度
+                            shadowBlur: 10,       // 发光效果
+                            shadowColor: '#ffd700' // 发光颜色
+                        },
+															areaStyle: {
+																color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+																	{ offset: 0, color: 'rgba(255, 214, 0, 0.3)' },
+																	{ offset: 1, color: 'rgba(255, 214, 0, 0)' }
+																])
+															}
+														}
+													]
+												};
+									
+												myChart.setOption(option);
+												window.addEventListener("resize", () => myChart.resize());
+											}
+										})
+									</script>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$(function () {
+				//数据
+				var resultData = [{ name: "山东", value: 24583 },
+				{ name: "福建", value:27530.3},
+				{ name: "山东",  value: 117767.29},
+				{ name: "福建", value: 27530.29},
+				{ name: "河北", value: 81030.3},
+				{ name: "河南", value: 70257.9},
+				{ name: "重庆", value: 18104.2},
+				{ name: "湖北", value: 52138.3},
+				{ name: "湖南", value: 29634.9},
+				{ name: "江西",  value: 27311.6},
+				{ name: "海南", value: 938.3},
+				{ name: "黑龙江",  value: 21127.5},
+				{ name: "天津",  value: 15167.8},
+				{ name: "贵州", value: 17449.8},
+				{ name: "陕西",  value: 42761.3},
+				{ name: "新疆", value: 14890.41},
+				{ name: "江苏", value: 96366.7},
+				{ name: "安徽", value: 54692.1},
+				{ name: "西藏", value: 2526.0},
+				{ name: "吉林",  value: 16157.6},
+				{ name: "上海", value: 20527.07},
+				{ name: "山西", value: 6290.9},
+				{ name: "甘肃", value: 23168.7},
+				{ name: "宁夏", value: 20108.5},
+				{ name: "四川", value: 25016.8 },
+				{ name: "浙江", value: 44180.1 },
+				{ name: "广西", value: 37160.6 },
+				{ name: "云南",  value: 15012.3 },
+				{ name: "内蒙古", value: 7028.2},
+				{ name: "辽宁", value: 47834.1 },
+				{ name: "广东", value: 69072.1},
+				{ name: "青海", value: 3305.4},
+				{ name: "北京", value: 8227.3}];
+				var seriesData = [];
+				// 指定 visualMapContinuous 组件的允许的最大值
+				var max = 60000;
+		
+				for (var i = 0; i < resultData.length; i++) {
+					seriesData.push({
+						name: resultData[i].name,
+						value: +(resultData[i].value),
+					})
+				}
+		
+				var option = {
+					tooltip: {//鼠标一上去的信息框
+						trigger: 'item'
+					},
+		
+					visualMap: {//visualMap 是视觉映射组件，用于进行『视觉编码』，也就是将数据映射到视觉元素（视觉通道）。
+						show: true,//是否显示组件
+						max: max,//指定 visualMapContinuous 组件的允许的最大值
+						left: '5%',
+						top: 'bottom',
+						bottom: '5%',
+						text: ['高', '低'],//两端的文本，如 ['High', 'Low']
+						calculable: true,//是否显示拖拽用的手柄（手柄能拖拽调整选中范围）。
+						inRange: {//定义 在选中范围中 的视觉元素。
+							color: ['#416cbb', '#00b4ff', '#00deff', '#00ffe4', '#79fff1', '#fff17b', '#ffd200'],//图元的颜色。
+						},
+						textStyle: {//设置文字颜色（Demo左下组件）
+							color: '#eee'
+						}
+					},
+					// 地图配置
+					geo: {
+						map: 'china',//地图类型
+						zoom: 1.24,//当前视角的缩放比例。(理解为地图放大缩小)
+						roam: false,//是否开启鼠标缩放和平移漫游。默认不开启。如果只想要开启缩放或者平移，可以设置成 'scale' 或者 'move'。设置成 true 为都开启
+						label: {//文本设置（Echarts其他图表都有这样的设置，值得多看）
+							normal: {//文字颜色
+								show: true,//是否显示文字
+								color: '#eee'
+							},
+							emphasis: {//hover各省时的文字颜色
+								show: false,
+								color: '#eee'
+							}
+						},
+						itemStyle: {
+							normal: {
+								areaColor: '#416cbb',//地图区域的颜色。
+								borderColor: '#fff',//图形的描边颜色。支持的颜色格式同 color，不支持回调函数。
+								shadowColor: '#41587f',//阴影颜色。
+								shadowBlur: 10,//图形阴影的模糊大小。
+								opacity: 0.75//图形透明度
+		
+							},
+							emphasis: {
+								areaColor: '#fdd145'
+							}
+						}
+					},
+					series: [
+						{
+							name: '苹果',
+							type: 'map',
+							mapType: 'china',
+							geoIndex: 0,//理解就是多个组件都能用option里配置的geo地图，类似于坐标轴里的yAxisIndex:numder,也就是说你可以配置多个geo，也可以多个组件共用geo
+							label: {
+								normal: {
+									show: true
+								},
+								emphasis: {
+									show: true
+								}
+							},
+							data: seriesData,
+							tooltip: {
+								// 利用formatter来自定义tooltip展示的数据
+								formatter: function (params, ticket, callback) {
+									if (params.value) {
+										return params.name + '碳排放量：' + params.value + '万吨<br/>'
+									} else {
+										callback()
+									}
+								}
+							}
+						}
+					]
+				};
+				var myChart = echarts.init(document.getElementById('map'), 'dark');
+				myChart.setOption(option);
+			});
+		
+		
+		</script>
+		
+</body>
+</html>
+	</body>
+</html>
+
+
